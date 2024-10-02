@@ -216,8 +216,16 @@ namespace WindowsFormsApp2
         {
             int selected = dataGridView1.CurrentCell.RowIndex;
             CustomCell cell = displayedCells[selected];
-            int cellIndex = cell._parent._dependentCells.IndexOf(cell);
-            cell._parent._dependentCells[cellIndex]._data = dataGridView1.Rows[selected].Cells[0].Value.ToString();
+
+            if (cell._parent != null)
+            {
+                int cellIndex = cell._parent._dependentCells.IndexOf(cell);
+                cell._parent._dependentCells[cellIndex]._data = dataGridView1.Rows[selected].Cells[0].Value.ToString();
+            } 
+            else
+            {
+                cell._data = dataGridView1.Rows[selected].Cells[0].Value.ToString();
+            }
         }
     }
 }
