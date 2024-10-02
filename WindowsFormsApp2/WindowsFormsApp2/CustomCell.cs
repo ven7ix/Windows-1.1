@@ -17,13 +17,13 @@ namespace WindowsFormsApp2
         public CustomCell _parent { get; set; }
         public bool _isShown { get; set; }
 
-        public CustomCell(string data, bool canBeOpened, List<CustomCell> dependentCells, CustomCell parent)
+        public CustomCell(string data, bool canBeOpened, CustomCell parent)
         {
             _data = data;
             _canBeOpened = canBeOpened;
             _isOpen = false;
             _gotCalled = false;
-            _dependentCells = dependentCells;
+            _dependentCells = null;
             _parent = parent;
             _isShown = false;
         }

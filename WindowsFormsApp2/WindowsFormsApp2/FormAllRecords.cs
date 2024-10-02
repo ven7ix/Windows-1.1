@@ -16,51 +16,55 @@ namespace WindowsFormsApp2
         List<CustomCell> people = new List<CustomCell>();
 
         List<CustomCell> displayedCells = new List<CustomCell>();
-        List<CustomCell> dependentCells = new List<CustomCell>();
 
         private void buttonNewRecord_Click(object sender, EventArgs e)
         {
-            
             dataGridView1.Columns.Add("", "");
 
-            CustomCell name = new CustomCell("test name", true, null, null);
-            CustomCell card = new CustomCell("test card", false, null, name);
-            CustomCell birthday = new CustomCell("test birthday", false, null, name);
-            CustomCell testOpen = new CustomCell("test testOpen", true, null, name);
-            CustomCell testOpenD1 = new CustomCell("test testOpenD1", false, null, testOpen);
-            CustomCell testOpenD2 = new CustomCell("test testOpenD2", false, null, testOpen);
+            Person person1 = new Person(1, "aaaaa", DateTime.Now);
+            Person person2 = new Person(2, "bbbbb", DateTime.Now);
 
-            CustomCell name2 = new CustomCell("test name 2", false, null, null);
+            CustomCell person1Cell = addNewPersonInCell(person1);
+            CustomCell person2Cell = addNewPersonInCell(person2);
 
             
 
-            dependentCells.Add(card);
-            dependentCells.Add(birthday);
-            dependentCells.Add(testOpen);
-            name._dependentCells = new List<CustomCell>(dependentCells);
-            name._isShown = true;
-            dependentCells.Clear();
+            CustomCell testOpen = new CustomCell("test testOpen", true, null);
+            CustomCell testOpenD1 = new CustomCell("test testOpenD1", true, testOpen);
+            CustomCell testOpenD2 = new CustomCell("test testOpenD2", false, testOpen);
+            CustomCell testOpenD1D1 = new CustomCell("test testOpenD1D1", false, testOpen);
 
+            person1Cell._dependentCells.Add(testOpen);
 
-            dependentCells.Add(testOpenD1);
-            dependentCells.Add(testOpenD2);
-            testOpen._dependentCells = new List<CustomCell>(dependentCells);
-            dependentCells.Clear();
-
-            displayedCells.Add(name);
-            dataGridView1.Rows.Add(name._data);
-
-            displayedCells.Add(name2);
-            dataGridView1.Rows.Add(name2._data);
-
-            /*people.Add(new CustomCell(new Person(11111, "dddd", DateTime.Now), true, 2));
-            people.Add(new CustomCell(new Person(22222, "xxxx", DateTime.Now), true, 2));
-
-            foreach (CustomCell p in people)
+            testOpen._dependentCells = new List<CustomCell>
             {
-                dataGridView1.Rows.Add(p._person._name);
-            }*/
+                testOpenD1,
+                testOpenD2
+            };
 
+            testOpenD1._dependentCells = new List<CustomCell>
+            {
+                testOpenD1D1
+            };
+        }
+
+        private CustomCell addNewPersonInCell(Person person)
+        {
+            CustomCell main = new CustomCell(person._name, true, null);
+            CustomCell dependentCell1 = new CustomCell(person._cardNumber.ToString(), false, main);
+            CustomCell dependentCell2 = new CustomCell(person._birthday.ToString(), false, main);
+
+            main._dependentCells = new List<CustomCell>
+            {
+                dependentCell1,
+                dependentCell2
+            };
+
+            displayedCells.Add(main);
+            dataGridView1.Rows.Add(main._data);
+            main._isShown = true;
+
+            return main;
         }
 
         private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
