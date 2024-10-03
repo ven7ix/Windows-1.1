@@ -33,9 +33,7 @@
             this.buttonNewDependence = new System.Windows.Forms.Button();
             this.buttonDeleteDependence = new System.Windows.Forms.Button();
             this.buttonAddCell = new System.Windows.Forms.Button();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonNewRecord
@@ -46,11 +44,15 @@
             this.buttonNewRecord.TabIndex = 0;
             this.buttonNewRecord.Text = "add";
             this.buttonNewRecord.UseVisualStyleBackColor = true;
+            this.buttonNewRecord.Click += new System.EventHandler(this.buttonNewRecord_Click);
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(89, 60);
+            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(240, 220);
             this.dataGridView1.TabIndex = 1;
@@ -87,20 +89,11 @@
             this.buttonAddCell.UseVisualStyleBackColor = true;
             this.buttonAddCell.Click += new System.EventHandler(this.ButtonAddCell_Click);
             // 
-            // dataGridView2
-            // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(583, 60);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(150, 220);
-            this.dataGridView2.TabIndex = 5;
-            // 
             // FormAllRecords
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.buttonAddCell);
             this.Controls.Add(this.buttonDeleteDependence);
             this.Controls.Add(this.buttonNewDependence);
@@ -109,7 +102,6 @@
             this.Name = "FormAllRecords";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -121,7 +113,6 @@
         private System.Windows.Forms.Button buttonNewDependence;
         private System.Windows.Forms.Button buttonDeleteDependence;
         private System.Windows.Forms.Button buttonAddCell;
-        private System.Windows.Forms.DataGridView dataGridView2;
     }
 }
 
